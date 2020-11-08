@@ -1,6 +1,8 @@
-# ECS deploy plugin for drone.io [https://hub.docker.com/r/joshdvir/drone-ecs-deploy/](https://hub.docker.com/r/joshdvir/drone-ecs-deploy/)
+# ECS deploy plugin for drone.io 
 
-This plugin allows updating an ECS service.
+[https://hub.docker.com/r/itsreeyan/drone-ecs-deploy](https://hub.docker.com/r/itsreeyan/drone-ecs-deploy)
+
+This plugin uses ECS Deploy and AWS CLI to update a running ECS service.
 
 ## Usage
 
@@ -9,7 +11,7 @@ This pipeline will update the `my-cluster` cluster and `my-service` service with
 ```yaml
   pipeline:
     deploy:
-      image: joshdvir/drone-ecs-deploy
+      image: itsreeyan/drone-ecs-deploy
       cluster: my-cluster
       service: my-service
       image_name: my-image:latest
@@ -21,7 +23,7 @@ Another example with optional variables
 ```yaml
   pipeline:
     deploy:
-      image: joshdvir/drone-ecs-deploy
+      image: itsreeyan/drone-ecs-deploy
       cluster: my-cluster
       service: my-service
       image_name: my-image:latest
@@ -32,6 +34,21 @@ Another example with optional variables
       aws_access_key_id: ewijdfmvbasciosvdfkl # optional, better to use as secret
       aws_secret_access_key: vdfklmnopenxasweiqokdvdfjeqwuioenajks # optional, better to use as secret
 ```
+
+Alternatively, the `image_tag` parameter can be used to deploy a specific container image version, instead of latest
+
+```yaml
+  pipeline:
+    deploy:
+      image: itsreeyan/drone-ecs-deploy
+      cluster: my-cluster
+      service: my-service
+      image_tag: v123
+      aws_region: us-east-1
+```
+
+Optional variables can be applied in the same way as the `image:latest` example, however `image_name` is not required.
+
 
 ## Optional secrets
 
